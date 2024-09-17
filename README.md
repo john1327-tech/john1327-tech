@@ -1,6 +1,7 @@
 ## Hi there 👋
 
 // Sample if statement code
+```
 import java.util.Scanner;
 public class Myclass {
     public static void main(String[] args) {
@@ -21,5 +22,6 @@ public class Myclass {
         }   
     }
 }
+```
 
 
