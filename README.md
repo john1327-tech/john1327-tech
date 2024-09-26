@@ -78,5 +78,23 @@ public class Myclass {
     }
 }
 ```
+import java.util.Scanner;
 
+class HelloWorld {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the starting number:");
+        int start = scanner.nextInt();
+        System.out.println("Enter the ending number:");
+        int end = scanner.nextInt();
+        System.out.print("Even numbers from " + start + " to " + end + ":");
+        for (int number = start; number <= end; number++) {
+            if (number % 2 == 0) {
+                System.out.println(number);
+            }
+        }
+        
+    }
+}
+```
 
