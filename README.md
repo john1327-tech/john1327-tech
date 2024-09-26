@@ -99,4 +99,26 @@ class HelloWorld {
     }
 }
 ```
+```
+import java.util.Scanner;
 
+class HelloWorld {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter the starting number:");
+        int begin = scanner.nextInt();
+        
+        System.out.print("Enter the ending number:");
+        int end = scanner.nextInt();
+        
+        while ((begin % end ) !=0) {
+            System.out.println(begin);
+            begin+=2;
+        }
+            }
+        }
+        
+    
+
+```
