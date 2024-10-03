@@ -122,3 +122,86 @@ class HelloWorld {
     
 
 ```
+```
+import java.util.Scanner;
+
+public class NumberChecker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int choice = 0;
+
+        while (choice != 4) {
+            
+            System.out.println("Choose an option:");
+            System.out.println("1. Check if this number is odd or even");
+            System.out.println("2. Check if this number is prime or composite");
+            System.out.println("3. Check if this number is perfect, deficient, or abundant");
+            System.out.println("4. Close Program");
+
+            choice = scanner.nextInt();
+
+            if (choice == 1) {
+                System.out.print("Enter a positive Number: ");
+                int number = scanner.nextInt();
+                while (number <= 0) {
+                    System.out.println("Error: Please enter a positive Number.");
+                    number = scanner.nextInt();
+                }
+                if (number % 2 == 0) {
+                    System.out.println(number + " is even.");
+                } else {
+                    System.out.println(number + " is odd.");
+                }
+            } else if (choice == 2) {
+                System.out.print("Enter a positive Number: ");
+                int number = scanner.nextInt();
+                while (number <= 0) {
+                    System.out.println("Error: Please enter a positive Number.");
+                    number = scanner.nextInt();
+                }
+                if (number <= 1) {
+                    System.out.println(number + " is neither prime nor composite.");
+                } else {
+                    int count = 0;
+                    for (int i = 1; i <= number; i++) {
+                        if (number % i == 0) {
+                            count++;
+                        }
+                    }
+                    if (count == 2) {
+                        System.out.println(number + " is prime.");
+                    } else {
+                        System.out.println(number + " is composite.");
+                    }
+                }
+            } else if (choice == 3) {
+                System.out.print("Enter a positive Number: ");
+                int number = scanner.nextInt();
+                while (number <= 0) {
+                    System.out.println("Error: Please enter a positive Number.");
+                    number = scanner.nextInt();
+                }
+                int sum = 0;
+                for (int i = 1; i < number; i++) {
+                    if (number % i == 0) {
+                        sum += i;
+                    }
+                }
+                if (sum == number) {
+                    System.out.println(number + " is a perfect number.");
+                } else if (sum < number) {
+                    System.out.println(number + " is a deficient number.");
+                } else {
+                    System.out.println(number + " is an abundant number.");
+                }
+            } else if (choice == 4) {
+                System.out.println("Closing Program Now.");
+            } else {
+                System.out.println("Invalid Number. Please try again.");
+            }
+        }
+
+        scanner.close();
+    }
+}
+```
