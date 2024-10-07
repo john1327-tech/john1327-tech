@@ -205,3 +205,90 @@ public class NumberChecker {
     }
 }
 ```
+```
+import java.util.Scanner;
+
+public class NumberClassification {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            // Display the menu with top and bottom borders only
+            System.out.println("***************************************");
+            System.out.println("       Number Classification Menu      ");
+            System.out.println("***************************************");
+            System.out.println(" 1. Check if the number is odd or even ");
+            System.out.println(" 2. Check if the number is prime or    ");
+            System.out.println("    composite                         ");
+            System.out.println(" 3. Check if the number is perfect,    ");
+            System.out.println("    deficient, or abundant             ");
+            System.out.println(" 4. Exit                              ");
+            System.out.println("***************************************");
+            System.out.print("Enter your choice: ");
+            
+            // Input choice from the user
+            choice = scanner.nextInt();
+            
+            if (choice == 1) {
+                System.out.print("Enter a positive integer: ");
+                int num = scanner.nextInt();
+                if (num > 0) {
+                    if (num % 2 == 0) {
+                        System.out.println(num + " is even.\n");
+                    } else {
+                        System.out.println(num + " is odd.\n");
+                    }
+                } else {
+                    System.out.println("Invalid input! Enter a positive integer.\n");
+                }
+            } else if (choice == 2) {
+                System.out.print("Enter a positive integer: ");
+                int num = scanner.nextInt();
+                if (num > 1) {
+                    boolean isPrime = true;
+                    // Check for factors from 2 to num-1
+                    for (int i = 2; i < num; i++) {
+                        if (num % i == 0) {
+                            isPrime = false;
+                            break;
+                        }
+                    }
+                    if (isPrime) {
+                        System.out.println(num + " is a prime number.\n");
+                    } else {
+                        System.out.println(num + " is a composite number.\n");
+                    }
+                } else {
+                    System.out.println("Invalid input! Enter a number greater than 1.\n");
+                }
+            } else if (choice == 3) {
+                System.out.print("Enter a positive integer: ");
+                int num = scanner.nextInt();
+                if (num > 0) {
+                    int sum = 0;
+                    for (int i = 1; i <= num / 2; i++) {
+                        if (num % i == 0) {
+                            sum += i;
+                        }
+                    }
+                    if (sum == num) {
+                        System.out.println(num + " is a perfect number.\n");
+                    } else if (sum < num) {
+                        System.out.println(num + " is an abundant number.\n");
+                    } else {
+                        System.out.println(num + " is a deficient number.\n");
+                    }
+                } else {
+                    System.out.println("Invalid input! Enter a positive integer.\n");
+                }
+            } else if (choice == 4) {
+                System.out.println("Exiting program. Thank you!\n");
+            } else {
+                System.out.println("Invalid choice. Please try again.\n");
+            }
+        } while (choice != 4);
+    }
+}
+```
