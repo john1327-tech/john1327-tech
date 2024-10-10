@@ -292,3 +292,31 @@ public class NumberClassification {
     }
 }
 ```
+```
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the base (positive integer): ");
+        int base = scanner.nextInt();
+        System.out.print("Enter the exponent (positive integer): ");
+        int exponent = scanner.nextInt();
+        if (base <= 0 || exponent <= 0) {
+            System.out.println("Both base and exponent must be positive.");
+            return;
+        }
+        int sum = 0;
+        int power = 1;
+        System.out.println("Explanation:");
+        for (int i = 1; i <= exponent; i++) {
+            power *= base;
+            sum += power;
+            System.out.println(base + "^" + i + " = " + power + ",Sum = " + sum);
+        }
+        System.out.println("The total power of sum from " + base + "^1 to " + base + "^" + exponent + " is: " + sum);
+        scanner.close();
+    }
+}
+```
