@@ -320,3 +320,139 @@ public class Main {
     }
 }
 ```
+```
+import java.util.Scanner;
+
+public class SimpleRideHailingSystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Maximum number of bookings that can be made
+        final int MAX_BOOKINGS = 50;
+        
+        // Arrays to hold booking details
+        String[] passengerNames = new String[MAX_BOOKINGS];
+        String[] dates = new String[MAX_BOOKINGS];
+        String[] times = new String[MAX_BOOKINGS];
+        String[] pickupLocations = new String[MAX_BOOKINGS];
+        String[] dropoffLocations = new String[MAX_BOOKINGS];
+        double[] distances = new double[MAX_BOOKINGS];
+        double[] fares = new double[MAX_BOOKINGS];
+        
+        // Counter for the number of bookings made
+        int bookingCount = 0;
+
+        // Main loop for the application
+        while (true) {
+            // Display menu options
+            System.out.println("\nRIDE-HAILING BOOKING SYSTEM");
+            System.out.println("1. View All Bookings");
+            System.out.println("2. Book a Ride");
+            System.out.println("3. Delete a Booking");
+            System.out.println("4. Generate Booking Report");
+            System.out.println("5. Exit Application");
+            System.out.print("Choose an option: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline character after nextInt()
+
+            // Option 1: View all bookings
+            if (choice == 1) {
+                if (bookingCount == 0) {
+                    System.out.println("No bookings available.");
+                } else {
+                    System.out.println("\n# Date       Time      Passenger Name  Pick-up Location  Drop-off Location  Distance (km)  Fare (PHP)");
+                    for (int i = 0; i < bookingCount; i++) {
+                        // Display each booking's details
+                        System.out.printf("%d %s %s %s %s %s %.1f %.2f\n", 
+                            (i + 1), dates[i], times[i], passengerNames[i], 
+                            pickupLocations[i], dropoffLocations[i], distances[i], fares[i]);
+                    }
+                }
+            } 
+            // Option 2: Book a ride
+            else if (choice == 2) {
+                if (bookingCount < MAX_BOOKINGS) {
+                    // Collect booking details from the user
+                    System.out.print("Enter Passenger Name: ");
+                    passengerNames[bookingCount] = scanner.nextLine();
+                    System.out.print("Enter Date (MM/DD/YYYY): ");
+                    dates[bookingCount] = scanner.nextLine();
+                    System.out.print("Enter Time (HH:MM AM/PM): ");
+                    times[bookingCount] = scanner.nextLine();
+                    System.out.print("Enter Pick-up Location: ");
+                    pickupLocations[bookingCount] = scanner.nextLine();
+                    System.out.print("Enter Drop-off Location: ");
+                    dropoffLocations[bookingCount] = scanner.nextLine();
+                    
+                    // Get distance and calculate fare
+                    System.out.print("Enter Distance (km): ");
+                    distances[bookingCount] = scanner.nextDouble();
+                    fares[bookingCount] = (distances[bookingCount] <= 1) ? 25.00 : 25.00 + (distances[bookingCount] - 1) * 20.00;
+
+                    bookingCount++; // Increment the booking count
+                    System.out.println("Booking successful!");
+                } else {
+                    System.out.println("Maximum booking limit reached.");
+                }
+            } 
+            // Option 3: Delete a booking
+            else if (choice == 3) {
+                if (bookingCount == 0) {
+                    System.out.println("No bookings to delete.");
+                } else {
+                    System.out.println("Enter the booking number to delete (1 to " + bookingCount + "): ");
+                    int bookingNumber = scanner.nextInt();
+                    if (bookingNumber > 0 && bookingNumber <= bookingCount) {
+                        // Shift bookings to remove the selected one
+                        for (int i = bookingNumber - 1; i < bookingCount - 1; i++) {
+                            passengerNames[i] = passengerNames[i + 1];
+                            dates[i] = dates[i + 1];
+                            times[i] = times[i + 1];
+                            pickupLocations[i] = pickupLocations[i + 1];
+                            dropoffLocations[i] = dropoffLocations[i + 1];
+                            distances[i] = distances[i + 1];
+                            fares[i] = fares[i + 1];
+                        }
+                        bookingCount--; // Decrement the booking count
+                        System.out.println("Booking deleted successfully!");
+                    } else {
+                        System.out.println("Invalid booking number.");
+                    }
+                }
+            }
+		// Option 4: Generate booking report
+            else if (choice == 4) {
+                if (bookingCount == 0) {
+                    System.out.println("No bookings available.");
+                } else {
+                    System.out.println("\n# Date       Time      Passenger Name  Distance (km)  Fare (PHP)");
+                    double totalDistance = 0;
+                    double totalFare = 0;
+
+                    for (int i = 0; i < bookingCount; i++) {
+                        // Display each booking's distance and fare for the report
+                        System.out.printf("%d %s %s %s %.1f %.2f\n", 
+                            (i + 1), dates[i], times[i], passengerNames[i], 
+                            distances[i], fares[i]);
+                        totalDistance += distances[i]; // Accumulate total distance
+                        totalFare += fares[i]; // Accumulate total fare
+                    }
+                    // Display total distance and fare
+                    System.out.printf("Total Distance: %.1f km\n", totalDistance);
+                    System.out.printf("Total Fare: %.2f PHP\n", totalFare);
+                }
+            } 
+            // Option 5: Exit the application
+            else if (choice == 5) {
+                System.out.println("Exiting the application. Goodbye!");
+                break; // Exit the loop and terminate the program
+            } 
+            // Invalid option handling
+            else {
+                System.out.println("Invalid option. Please try again.");
+            }
+        }
+        scanner.close(); // Close the scanner resource
+    }
+}
+```
