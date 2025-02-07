@@ -462,6 +462,8 @@ https://www.programiz.com/online-compiler/8NwWrupPPBaId
 ```
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Totoybibo {
 
@@ -479,7 +481,7 @@ class FutureValueFrame extends JFrame {
         centerWindow(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        FutureValuePanel panel = new FutureValuePanel();
+        FutureValuePanel panel = new FutureValuePanel(); 
         this.add(panel);
         
         setLayout(new FlowLayout());
@@ -491,15 +493,27 @@ class FutureValueFrame extends JFrame {
         setLocation((d.width - w.getWidth()) / 2, (d.height - w.getHeight()) / 2);
     }
     
-    class FutureValuePanel extends JPanel { 
+    class FutureValuePanel extends JPanel implements ActionListener { // Implement ActionListener
         private final JButton calculateButton;
         private final JButton exitButton;
 
         public FutureValuePanel() { 
             calculateButton = new JButton("Calculate");
             this.add(calculateButton);
+            calculateButton.addActionListener(this); // Add action listener to the button
             exitButton = new JButton("Exit");
+            exitButton.addActionListener(this); // Add action listener to the button
             this.add(exitButton);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) { // Override actionPerformed
+            Object source = e.getSource();
+            if (source == exitButton) {
+                System.exit(0);
+            } else if (source == calculateButton) {
+                calculateButton.setText("Clicked!");
+            }
         }
     }
 }
